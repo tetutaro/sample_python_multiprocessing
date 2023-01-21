@@ -1,4 +1,4 @@
-PACKAGE="sandbox_python"
+PACKAGE="src"
 
 .PHONY: clean
 clean: clean-python clean-package clean-tests clean-system
@@ -80,7 +80,7 @@ version-up:
 ifdef VERSION
 	git tag $(VERSION)
 	poetry dynamic-versioning
-	git add pyproject.toml $(PACKAGE)/__init__.py
+	git add pyproject.toml src/__init__.py
 	git commit -m "$(VERSION)"
 	git tag -f $(VERSION)
 	git push
