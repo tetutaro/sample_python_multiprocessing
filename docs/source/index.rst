@@ -1,4 +1,10 @@
-# sample_python_multiprocessing
+.. sample-python-multiprocessing documentation master file, created by
+   sphinx-quickstart on Tue Jan 24 05:02:07 2023.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to sample-python-multiprocessing's documentation!
+=========================================================
 
 A sample implementation for creating multiple child processes
 and performing distributed parallel processing.
@@ -40,19 +46,15 @@ Response Queue でその処理結果を受け取る。
 また子プロセスで発生したログは Message Queue を介し
 親プロセスが受け取り、それらログを通常のログと同様に処理する。
 
-## How to run the program
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
 
-invoke the command on your terminal `python run.py` or `make run`.
+   src
 
-```
-usage: run.py [-h] [-n NCHILD]
+Indices and tables
+==================
 
-A sample implementation of multiprocessing
-
-options:
-  -h, --help                    show this help message and exit
-  -n NCHILD, --nchild NCHILD    the number of child processes
-                                (defualt: -1 == os.cpu_count() - 1)
-```
-
-if you use make command, you can indicate the option like `make run NCHILD=8`.
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

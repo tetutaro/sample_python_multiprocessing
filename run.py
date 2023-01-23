@@ -5,7 +5,7 @@ from argparse import ArgumentParser, Namespace
 from logging import (
     Logger,
     Formatter,
-    StreamHandler,  # the main log handler
+    StreamHandler,  # the root log handler
     getLogger,
     INFO,  # the Log Level
 )
@@ -16,7 +16,7 @@ LOG_LEVEL: int = INFO
 
 
 def main() -> None:
-    # get arguments
+    # Get arguments
     parser: ArgumentParser = ArgumentParser(
         description="A sample implementation of multiprocessing"
     )
@@ -30,7 +30,7 @@ def main() -> None:
         ),
     )
     args: Namespace = parser.parse_args()
-    # create the main logger
+    # Create the root logger
     logger: Logger = getLogger()
     logger.setLevel(LOG_LEVEL)
     formatter: Formatter = Formatter(
@@ -41,9 +41,9 @@ def main() -> None:
     handler.setLevel(LOG_LEVEL)
     handler.setFormatter(formatter)
     logger.addHandler(handler)
-    # create the Parent instance
+    # Create the Parent instance
     parent: Parent = Parent(**vars(args), logger=logger)
-    # do it!
+    # Do it!
     _ = parent.run()
     return
 

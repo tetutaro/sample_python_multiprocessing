@@ -49,6 +49,7 @@ include = "\\.pyi?$"
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
+testpaths = ["src", "tests"]
 addopts = "-v --cov --flake8 --mypy"
 filterwarnings = """
     ignore:SelectableGroups dict interface is deprecated. Use select.
