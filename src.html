@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src package &mdash; sample-python-multiprocessing  ドキュメント</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" src="_static/jquery.js"></script>
+        <script integrity="sha384-lSZeSIVKp9myfKbDQ3GkN/KHjUc+mzg17VKDN4Y2kUeBSJioB9QSM639vM9fuY//" src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="Welcome to sample-python-multiprocessing&#39;s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> sample-python-multiprocessing
+          </a>
+              <div class="version">
+                0.1.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">src package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.child">src.child module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.child.Child"><code class="docutils literal notranslate"><span class="pre">Child</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#src.child.Child.run"><code class="docutils literal notranslate"><span class="pre">Child.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#src.child.ChildProps"><code class="docutils literal notranslate"><span class="pre">ChildProps</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#src.child.ChildProps.dummy_int"><code class="docutils literal notranslate"><span class="pre">ChildProps.dummy_int</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.child.ChildProps.dummy_str"><code class="docutils literal notranslate"><span class="pre">ChildProps.dummy_str</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#src.child.random"><code class="docutils literal notranslate"><span class="pre">random()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.dto">src.dto module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.dto.TaskRequest"><code class="docutils literal notranslate"><span class="pre">TaskRequest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#src.dto.TaskRequest.request_index"><code class="docutils literal notranslate"><span class="pre">TaskRequest.request_index</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.dto.TaskRequest.request_value"><code class="docutils literal notranslate"><span class="pre">TaskRequest.request_value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#src.dto.TaskResponse"><code class="docutils literal notranslate"><span class="pre">TaskResponse</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#src.dto.TaskResponse.is_success"><code class="docutils literal notranslate"><span class="pre">TaskResponse.is_success</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.dto.TaskResponse.request_index"><code class="docutils literal notranslate"><span class="pre">TaskResponse.request_index</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.dto.TaskResponse.response_value"><code class="docutils literal notranslate"><span class="pre">TaskResponse.response_value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#src.dto.check_value"><code class="docutils literal notranslate"><span class="pre">check_value()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.parent">src.parent module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.parent.Parent"><code class="docutils literal notranslate"><span class="pre">Parent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#src.parent.Parent.run"><code class="docutils literal notranslate"><span class="pre">Parent.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#src.parent.child_worker"><code class="docutils literal notranslate"><span class="pre">child_worker()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">sample-python-multiprocessing</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">src package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/src.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-src">
+<span id="src-package"></span><h1>src package<a class="headerlink" href="#module-src" title="この見出しへのパーマリンク"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="この見出しへのパーマリンク"></a></h2>
+</section>
+<section id="module-src.child">
+<span id="src-child-module"></span><h2>src.child module<a class="headerlink" href="#module-src.child" title="この見出しへのパーマリンク"></a></h2>
+<p>The module defines the Child class
+which implements the actual task handling only</p>
+<p>タスクの実際の処理だけを実装した Child class を定義するモジュール</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.child.Child">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.child.</span></span><span class="sig-name descname"><span class="pre">Child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dummy_int</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dummy_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/child.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.child.Child" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The class that implements the actual task handling only.</p>
+<p>タスクの実際の処理だけを実装したクラス</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dummy_int</strong> (<em>int</em>) -- information for task handling (dummy)</p></li>
+<li><p><strong>dummy_str</strong> (<em>str</em>) -- information for task handling (dummy)</p></li>
+<li><p><strong>logger</strong> (<em>Logger</em>) -- the root logger (single process)
+the queue logger (multi processes)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.child.Child.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">req</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.dto.TaskRequest" title="src.dto.TaskRequest"><span class="pre">TaskRequest</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#src.dto.TaskResponse" title="src.dto.TaskResponse"><span class="pre">TaskResponse</span></a></span></span><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/child.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.child.Child.run" title="この定義へのパーマリンク"></a></dt>
+<dd><p>The actual task handling.</p>
+<p>タスクの実際の処理</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>req</strong> (<a class="reference internal" href="#src.dto.TaskRequest" title="src.dto.TaskRequest"><em>TaskRequest</em></a>) -- the request of the task</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>the response (result) of the task</p>
+</dd>
+<dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#src.dto.TaskResponse" title="src.dto.TaskResponse">TaskResponse</a></p>
+</dd>
+<dt class="field-even">例外<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> -- indicates the task handling is failed</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.child.ChildProps">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.child.</span></span><span class="sig-name descname"><span class="pre">ChildProps</span></span><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/child.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.child.ChildProps" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<p>The class for Parent class to pass information
+that is necessary for task handling to Child class.
+It is given to the Child class when creating an instance.
+It is defined in TypedDict
+because it does not define the interprocess communication.</p>
+<p>Parent class がタスク処理に必要な情報を Child class に渡すための class。
+Child class のインスタンスを作る時に与えられる。
+プロセス間通信を定義するものではないため、TypedDict で定義した。</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dummy_int</strong> (<em>int</em>) -- information for task handling (dummy)</p></li>
+<li><p><strong>dummy_str</strong> (<em>str</em>) -- information for task handling (dummy)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.child.ChildProps.dummy_int">
+<span class="sig-name descname"><span class="pre">dummy_int</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/child.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.child.ChildProps.dummy_int" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.child.ChildProps.dummy_str">
+<span class="sig-name descname"><span class="pre">dummy_str</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/child.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.child.ChildProps.dummy_str" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.child.random">
+<span class="sig-prename descclassname"><span class="pre">src.child.</span></span><span class="sig-name descname"><span class="pre">random</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">x</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">interval</span> <span class="pre">[0,</span> <span class="pre">1).</span></span></span><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/child.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.child.random" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-src.dto">
+<span id="src-dto-module"></span><h2>src.dto module<a class="headerlink" href="#module-src.dto" title="この見出しへのパーマリンク"></a></h2>
+<p>The module defines the DTO (Data Transfer Object)
+for inter-process communication.</p>
+<p>For clarity of deficition of DTO,
+and easy implementation of value checking,
+Use Pydantic.</p>
+<p>Generally, the validate function of each value (attribute)
+uses the pydantic.validator() function as a decorator.
+But if the same type of value exists in multiple classes
+and you want to reuse the validate function,
+or the similar type of values are in the same class
+and you want to use the same validate function for them,
+I showed how to define the validate function outside the class and reuse it.</p>
+<p>プロセス間通信の DTO (Data Transfer Object) を定義するモジュール</p>
+<p>明瞭に、かつ値のチェックを簡単に実装するため、
+Pydantic を用いる。</p>
+<p>一般的には各々の値の validate 関数は
+pydantic.validator() 関数を decorator として用いるが、
+複数の class に同じ値が存在して validate 関数を再利用したい場合、
+同じ class 内でも複数の attribute に対して
+同じ validate 関数を利用したい場合のために、
+class 外で validate 関数を定義して、それを使い回す実装を行った。</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.dto.TaskRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.dto.</span></span><span class="sig-name descname"><span class="pre">TaskRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/dto.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.dto.TaskRequest" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>DTO for the request of the task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request_index</strong> (<em>int</em>) -- The index of the request</p></li>
+<li><p><strong>request_value</strong> (<em>int</em>) -- The input value of the task</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.dto.TaskRequest.request_index">
+<span class="sig-name descname"><span class="pre">request_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/dto.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.dto.TaskRequest.request_index" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.dto.TaskRequest.request_value">
+<span class="sig-name descname"><span class="pre">request_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/dto.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.dto.TaskRequest.request_value" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.dto.TaskResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.dto.</span></span><span class="sig-name descname"><span class="pre">TaskResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_success</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/dto.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.dto.TaskResponse" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>DTO for the response of the task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request_index</strong> (<em>int</em>) -- The index of the request</p></li>
+<li><p><strong>response_value</strong> (<em>int</em>) -- The output value of the task (result)</p></li>
+<li><p><strong>is_success</strong> (<em>bool</em>) -- Was the handling of task succeed?</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.dto.TaskResponse.is_success">
+<span class="sig-name descname"><span class="pre">is_success</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/dto.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.dto.TaskResponse.is_success" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.dto.TaskResponse.request_index">
+<span class="sig-name descname"><span class="pre">request_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/dto.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.dto.TaskResponse.request_index" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.dto.TaskResponse.response_value">
+<span class="sig-name descname"><span class="pre">response_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/dto.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.dto.TaskResponse.response_value" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.dto.check_value">
+<span class="sig-prename descclassname"><span class="pre">src.dto.</span></span><span class="sig-name descname"><span class="pre">check_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/dto.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.dto.check_value" title="この定義へのパーマリンク"></a></dt>
+<dd><p>The validate function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em>) -- The value to be checked</p>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>Checked value</p>
+</dd>
+<dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-src.parent">
+<span id="src-parent-module"></span><h2>src.parent module<a class="headerlink" href="#module-src.parent" title="この見出しへのパーマリンク"></a></h2>
+<p>The module defines the Parent class that implements parent process handling,
+and the wrapper function (child_worker) that run the Child class
+that implements the actual task handling.</p>
+<p>このモジュールでは、親プロセスの処理を実装した Parent class と、
+実際の Task の処理を実装した Child class を動作させる
+wrapper 関数（child_worker）を定義している。</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.parent.Parent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.parent.</span></span><span class="sig-name descname"><span class="pre">Parent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nchild</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/parent.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.parent.Parent" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The class that implements parent process' handling.</p>
+<p>Create the Request Queue, the Response Queue and the Message Queue,
+Then register all Tasks in Request Queue in advance,
+And set the Log Handler to the Message Queue
+to receive Logs from child processes.
+Pass all Queues to the wrapper function to spawn a child process,
+Receive the results of the Task processed by the child process
+in the Response Queue.</p>
+<p>Also, update the progress every time
+the Parent class receive the result in the Response Queue,
+Visualize its progress with Progress Bar (tqdm).</p>
+<p>I used the multiprocessing.Process class to create child processes.
+It can be implemented more easily by using
+the multiprocessing.Pool class.
+But you can't use multiprocessing.Pool class
+when passing Queues to the wrapper function (child_worker()).
+If you pass Queues to the wrapper function in arguments,
+You will get the following error:</p>
+<blockquote>
+<div><p>RuntimeError: JoinableQueue objects should only be shared
+between processes through inheritance</p>
+</div></blockquote>
+<p>The multiprocessing.Pool class should be used when
+the cost to prepare resources for handling tasks is low,
+and it is possible to launch child processes for each task,
+and throw them away when the task is done.</p>
+<p>The Request Queue is a Queue that child processes use for waiting.
+Because it is necessary to properly grasp
+the termination of the child processes,
+I used multiprocessing.JoinableQueue for the Request Queue.</p>
+<p>On the other hand, the Response Queue just stores results of the task
+handled by child processes,
+And only the parent process receives it.
+No control is required in comparison with the Request Queue.
+So I used multiprocessing.SimpleQueue for the Response Queue.</p>
+<p>Furthermore, it does not wait processes in the Message Queue,
+But I want the block function in the Message Queue
+because it is inconvenient if the order of the logs is changed.
+So I used multiprocessing.Queue for the Message Queue.</p>
+<p>I think that the way described above should be the proper way
+to use these three Queues.</p>
+<p>If you specify 1 as the number of child process,
+The parent process does not actually create a child process,
+only the parent process handle all the tasks.
+Even in that case, in the wrapper function (child_worker())
+implements all Logger settings and Queue operations,
+and the Child class only implements the actual task handling,
+So I can implement handlings in exactly the same way
+as the case of multi processes.</p>
+<p>Naturally, in the case of multi processes,
+in the order in which Task was added
+There is no guarantee that results will be returned.
+So if you want to get the same result as single process,
+Finally, the results should be sorted in the order requested.</p>
+<p>Of course, in the case of multi processes,
+there is no guarantee that results will be returned
+in the order in which tasks were added.
+So if you want to get the same result as with single process,
+you need to finally sort the results in the order you requested.</p>
+<p>親プロセスの処理を実装した class。</p>
+<p>Request Queue, Response Queue, Message Queue を作り、
+予め Task をすべて Request Queue に登録し、
+子プロセスからの Log を受け取るために
+Message Queue に対して Log Handler の設定を行い、
+すべての Queue を wrapper 関数に渡して子プロセスを立ち上げ、
+子プロセスが処理した Task の結果を Response Queue で受け取る。</p>
+<p>また、Response Queue で結果を受け取る毎に進捗状況を更新し、
+Progress Bar (tqdm) でその進捗状況を可視化する。</p>
+<p>子プロセスの生成には multiprocessing.Process class を使っている。
+multiprocessing.Pool class を用いるともっと簡単に実装できるが、
+Queue を渡しているので multiprocessing.Pool class は使用できない。
+multiprocessing.Pool class を使用して、そこから呼び出す関数
+（この場合は child_worker()）の引数に Queue を渡すと、
+以下のエラーが出る。</p>
+<blockquote>
+<div><p>RuntimeError: JoinableQueue objects should only be shared
+between processes through inheritance</p>
+</div></blockquote>
+<p>multiprocessing.Pool class は、子プロセスが処理のための資源を準備する
+コストが低く、タスク毎に子プロセスを立ち上げて処理させ使い捨てる
+実装の場合に用いるべきである。</p>
+<p>Request Queue は子プロセスが待ち合わせの為に使う Queue であり、
+子プロセスの終了をきちんと把握する必要があるため、
+Request Queue には multiprocessing.JoinableQueue を用いる。</p>
+<p>それに対し Response Queue は子プロセスが処理した結果を
+親プロセスが受け取るだけなので、何も制御がいらない。
+よって Response Queue には multiprocessing.SimpleQueue を使う。</p>
+<p>さらに、Message Queue でプロセスを待ち合わせることはしないが、
+ログの順番が入れ替わると不便なので block 機能はほしい。
+よって Message Queue には multiprocessing.Queue を使う。</p>
+<p>multiprocessing モジュールで定義されている３種類の Queue は、
+上記のように使い分けることを想定されていると考える。</p>
+<p>子プロセス数を 1 と指定した場合は、
+実際には子プロセスを生成せず、親プロセスだけで処理を行う。
+その場合にも、wrapper 関数（child_worker()）にて
+Logger の設定や Queue に関する処理をすべて実装し、
+Child class では実際のタスクの処理だけを実装しているため、
+multi processes の場合と全く同じ様に処理を実装することが出来る。</p>
+<p>当然ながら、multi processes の場合は Task を追加した順番通りに
+結果が返ってくる保証は無い。
+よって、single process の場合と同じ結果を得たい場合は、
+最終的に結果をリクエストした順番にソートする必要がある。</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nchild</strong> (<em>int</em>) -- The number of child processes</p></li>
+<li><p><strong>logger</strong> (<em>Logger</em>) -- The root logger</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.parent.Parent.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/parent.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.parent.Parent.run" title="この定義へのパーマリンク"></a></dt>
+<dd><p>The wrapper function for _run_single() and _run_multiple().
+Switch which one to use by the value of self.nchild.
+Also, it measures the total time taken for the all handlings.</p>
+<p>_run_single() と _run_multiple() の wrapper 関数。
+self.nchild の値によってどちらを使うかを切り替える。
+また、処理にかかった時間を計測する。</p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The results</p>
+</dd>
+<dt class="field-even">戻り値の型<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.parent.child_worker">
+<span class="sig-prename descclassname"><span class="pre">src.parent.</span></span><span class="sig-name descname"><span class="pre">child_worker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">req_queue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">JoinableQueue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res_queue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SimpleQueue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_queue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Queue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">props</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.child.ChildProps" title="src.child.ChildProps"><span class="pre">ChildProps</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference external" href="https://github.com/tetutaro/sample_python_multiprocessing/blob/main/src/parent.py"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#src.parent.child_worker" title="この定義へのパーマリンク"></a></dt>
+<dd><p>The function called from multiprocessing.Process class.</p>
+<p>So, this function is not an in-class function,
+must be a normal function.</p>
+<p>This function works in the child process.</p>
+<p>This function handle the every operation about
+the Request Queue and Response Queue.
+So, the Child class does not need to operate Queues at all,
+and need to handle the Task only.</p>
+<p>And this function create the Log Handler and the Logger
+using the Message Queue and pass it to the Child class.
+So the Child class can send logs as usual.</p>
+<p>This function also assumes that some error occurs
+in task handling of the Child class.
+This function recognizing the error by receiving ValueError.
+In that case, by registering the error Response to the Response Queue,
+This function tell the error to the Parent class.</p>
+<p>JoinableQueue.get() function receives a Task from the Request Queue.
+It is called with block=True option.
+So, it keeps waiting eternally unless it receives any entry from the Queue
+even if the Request Queue is empty or closed.
+(If use JoinableQueue.get(block=False),
+queue.Empty Exception is raised if the Queue is empty,
+ValueError Exception is raised if the Queue is closed).
+So, when all task is finished,
+Parent class sends None Entry to Request Queue,
+this function exit the main loop by receiving it.</p>
+<p>If this function receive None Entry with JoniableQueue.get(),
+The None Entry disappears from the Queue.
+So to terminate other Child processes,
+You have to JoinableQueue.push() a new None Entry.</p>
+<p>multiprocessing.Process class から呼ばれる関数。</p>
+<p>よって、この関数は class 内関数ではなく、
+通常の関数でなくてはならない。</p>
+<p>この関数は子プロセスにて動作する。</p>
+<p>この関数の中で Request Queue, Response Queue に関する処理を
+全て行うので、Child clas では Queue の処理を一切する必要がなく、
+Task の処理のみを行うだけでよい。</p>
+<p>また Message Queue を使った Log Handler および Logger の作成も
+行い、それを Child class に渡すので、
+Child class は通常と変わらずログを送ることが出来る。</p>
+<p>この関数では Child class の処理でエラーが発生する場合も想定している。
+ValueError を受け取ることでエラーが発生したことを認識し、
+その場合にはエラーを表す Response を Response Queue に登録することで、
+Parent class にエラーを伝えている。</p>
+<p>Request Queue から Task を受け取る JoinableQueue.get() 関数は
+block=True オプションを付けているので、何か Entry を受け取らない限り
+空であっても close() されてもずっと待ち続ける
+（JoinableQueue.get(block=False) の場合は、
+Queue が空の場合は queue.Empty、
+Queue が close された場合は ValueError の例外が raise される）。
+そこで、全ての処理が終了したら、
+Parent class が Request Queue に None Entry を送り、
+それを受け取ることでこの関数は main loop を終了する。</p>
+<p>JoniableQueue.get() で None Entry を受け取った場合には、
+その None Entry は Queue から無くなる。
+そこで他の子プロセスも終了させるために、
+新たに None Entry を JoinableQueue.push() しなければならない。</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<em>int</em>) -- The index of child process</p></li>
+<li><p><strong>req_queue</strong> (<em>JoinableQueue</em>) -- The Request Queue</p></li>
+<li><p><strong>res_queue</strong> (<em>SimpleQueue</em>) -- The Response Queue</p></li>
+<li><p><strong>log_queue</strong> (<em>Queue</em>) -- The Message Queue</p></li>
+<li><p><strong>log_level</strong> (<em>int</em>) -- Rhe log level</p></li>
+<li><p><strong>props</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) -- Properties of the Child</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to sample-python-multiprocessing&#39;s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Tetsutaro Maruyama.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

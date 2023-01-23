@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to sample-python-multiprocessing&#39;s documentation! &mdash; sample-python-multiprocessing  ドキュメント</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" src="_static/jquery.js"></script>
+        <script integrity="sha384-lSZeSIVKp9myfKbDQ3GkN/KHjUc+mzg17VKDN4Y2kUeBSJioB9QSM639vM9fuY//" src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="src package" href="src.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> sample-python-multiprocessing
+          </a>
+              <div class="version">
+                0.1.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src.html">src package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">sample-python-multiprocessing</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Welcome to sample-python-multiprocessing's documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="welcome-to-sample-python-multiprocessing-s-documentation">
+<h1>Welcome to sample-python-multiprocessing's documentation!<a class="headerlink" href="#welcome-to-sample-python-multiprocessing-s-documentation" title="この見出しへのパーマリンク"></a></h1>
+<p>A sample implementation for creating multiple child processes
+and performing distributed parallel processing.
+This implementation will be useful for the case that
+there are a large number of tasks with a large amount of computation.</p>
+<p>Assuming that preparing resources to handle a task is a very heavy process,
+Instead of creating a child process for each task and throwing it away,
+Spawns a small number of child processes compared to the number of tasks,
+Reusing that limited number of child processes to handle multiple tasks
+(e.g. load Machile Learning model in child process
+to making predictions on the data).
+To control tasks and child processes, I implemented using Queues.</p>
+<p>The Parent class submits the request of the task to the Request Queue
+and lets the Child processes retrieve and handle the task in parallel,
+then receives the result of the task in the Response Queue.</p>
+<p>At that time, the progress bar is displayed to visualize the progress.
+Logs generated in Child processes are passed to the Parent class
+via the Message Queue, and the Parent class show (or store) them as usual.</p>
+<p>複数の子プロセスを生成し、分散並列処理をするサンプル実装。
+多くの計算量を要する多数のタスクを処理する場合に参考になると思う。</p>
+<p>タスクを処理するための資源を用意することが非常に重い処理である場合を想定し、
+タスク毎に子プロセスを生成して使い捨てるのではなく、
+タスク数と比較して少数の子プロセスを生成し、
+その限られた数の子プロセスを使い回して複数のタスクを処理させている
+（例えば子プロセスで Machile Learning model をロードして
+データの予測を行う場合など）。
+このタスクと子プロセスの制御のために、Queue を使って実装している。</p>
+<p>親プロセスはタスクを Request Queue に登録し、
+それを複数の子プロセスに受け取らせて処理を行わせ、
+Response Queue でその処理結果を受け取る。</p>
+<p>それと同時に、その進捗状況を Progress Bar で可視化する。
+また子プロセスで発生したログは Message Queue を介し
+親プロセスが受け取り、それらログを通常のログと同様に処理する。</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src.html">src package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.child">src.child module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.dto">src.dto module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.parent">src.parent module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="この見出しへのパーマリンク"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">索引</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">モジュール索引</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">検索ページ</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="src.html" class="btn btn-neutral float-right" title="src package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Tetsutaro Maruyama.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
