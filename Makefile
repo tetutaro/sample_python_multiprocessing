@@ -1,4 +1,10 @@
-PACKAGE="src"
+.PHONY: run
+run:
+ifdef NCHILD
+	python run.py --nchild $(NCHILD)
+else
+	python run.py
+endif
 
 .PHONY: clean
 clean: clean-python clean-package clean-tests clean-system
@@ -37,14 +43,14 @@ requirements:
 
 .PHONY: stubs
 stubs:
-	stubgen -o src src
+	stubgen -o . -p src
 
 .PHONY: build-package
 build-package:
 	$(eval VERSION := $(shell poetry version -s))
 	poetry build
-	@tar zxf dist/$(PACKAGE)-$(VERSION).tar.gz -C ./dist
-	@cp dist/$(PACKAGE)-$(VERSION)/setup.py setup.py
+	@tar zxf dist/src-$(VERSION).tar.gz -C ./dist
+	@cp dist/src-$(VERSION)/setup.py setup.py
 	@black setup.py
 	@rm -rf dist
 
@@ -54,7 +60,7 @@ install:
 
 .PHONY: uninstall
 uninstall:
-	pip uninstall -y $(PACKAGE)
+	pip uninstall -y src
 
 .PHONY: docs
 docs:
@@ -65,7 +71,6 @@ tests: tests-python
 
 .PHONY: tests-python
 tests-python:
-	poetry run pflake8 .
 	poetry run pytest
 
 .PHONY: tests-report

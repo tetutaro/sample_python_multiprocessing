@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding:utf-8 -*-
 from __future__ import annotations
 from typing import TypedDict
@@ -6,22 +6,21 @@ import time
 from random import random
 from logging import Logger
 
-from dto import TaskRequest, TaskResponse
+from src.dto import TaskRequest, TaskResponse
 
 
 class ChildProps(TypedDict):
-    index: int
-    dummy: str
+    dummy_int: int
+    dummy_str: str
 
 
 class Child:
     def __init__(
         self: Child,
-        index: int,
-        dummy: str,
+        dummy_int: int,
+        dummy_str: str,
         logger: Logger,
     ) -> None:
-        self.index: int = index
         self.logger: Logger = logger
         return
 

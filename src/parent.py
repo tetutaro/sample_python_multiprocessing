@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding:utf-8 -*-
 """A sample implementation for creating multiple child processes
 and performing distributed parallel processing.
@@ -15,7 +15,6 @@ and "Parent" show (or store) them as usual.
 from __future__ import annotations
 from typing import List, Optional
 import os
-import sys
 from time import time_ns
 from multiprocessing import (
     Process,  # for the process of the Child
@@ -24,13 +23,9 @@ from multiprocessing import (
     SimpleQueue,  # for the Responce Queue
     get_logger,
 )
-from queue import Empty  # the queue empty Exception
-from argparse import ArgumentParser, Namespace
 from logging import (
     Logger,
     Formatter,
-    StreamHandler,  # the main log handler
-    getLogger,
     INFO,  # the Log Level
 )
 from logging.handlers import (
@@ -40,19 +35,21 @@ from logging.handlers import (
 
 from tqdm import tqdm  # the progress bar
 
-from dto import (
+from src.dto import (
     TaskRequest,  # the Task Request
     TaskResponse,  # the Task Response
 )
-from child import ChildProps, Child  # the class that handle the task
+from src.child import ChildProps, Child  # the class that handle the task
 
 LOG_LEVEL: int = INFO  # the log level
 
 
 def child_worker(
+    index: int,
     req_queue: JoinableQueue,
     res_queue: SimpleQueue,
     log_queue: Queue,
+    log_level: int,
     props: ChildProps,
 ) -> None:
     """the worker function
@@ -65,23 +62,18 @@ def child_worker(
     """
     # create the logger for the Child
     logger: Logger = get_logger()
-    logger.setLevel(LOG_LEVEL)
-    formatter: Formatter = Formatter(f"[CHILD{props['index']:02}] %(message)s")
+    logger.setLevel(log_level)
+    formatter: Formatter = Formatter(f"[CHILD{index:02}] %(message)s")
     handler: QueueHandler = QueueHandler(log_queue)
-    handler.setLevel(LOG_LEVEL)
+    handler.setLevel(log_level)
     handler.setFormatter(formatter)
     logger.addHandler(handler)
     # create the instance of the Child
     chi: Child = Child(**props, logger=logger)
     # main loop
     while True:
-        try:
-            # retrieve the task request
-            req: Optional[TaskRequest] = req_queue.get()
-        except (Empty, ValueError):
-            # The Request Queue is empty or closed
-            # exit main loop
-            break
+        # retrieve the task request
+        req: Optional[TaskRequest] = req_queue.get()
         if req is None:
             # Someone (Parent or Child) tells me to close
             # tell another Child to close
@@ -131,30 +123,24 @@ class Parent:
         cpu_count: Optional[int],
     ) -> int:
         # calculate the proper number of processes
-        if cpu_count is None or cpu_count == 1:
-            return 0
+        if cpu_count is None or cpu_count < 2:
+            return 1
+        if 0 <= nchild and nchild < 2:
+            return 1
         return cpu_count - 1 if nchild < 0 or cpu_count <= nchild else nchild
 
-    def run(self: Parent) -> None:
+    def run(self: Parent) -> List[int]:
         num_task: int = 12
         start: int = time_ns()
-        if self.nchild == 0:
+        if self.nchild < 2:
             results: List[int] = self._run_single(num_task=num_task)
         else:
             results = self._run_multiple(num_task=num_task)
         end: int = time_ns()
-        for i, result in enumerate(results):
-            try:
-                assert (
-                    result == (i + 1) ** 2
-                ), f"results[{i}]: expected={(i + 1)**2}, value={result}"
-            except AssertionError as e:
-                self.logger.error(e)
-                continue
         self.logger.info(
             f"processing time: {round(float((end - start) / 1e9), 3)}s"
         )
-        return
+        return results
 
     def _run_single(self: Parent, num_task: int) -> List[int]:
         # create the Task Requests
@@ -172,8 +158,8 @@ class Parent:
             reqs.append(req)
         # handle tasks
         chi: Child = Child(
-            index=0,
-            dummy="dummy",
+            dummy_int=0,
+            dummy_str="0",
             logger=self.logger,
         )
         results: List[int] = list()
@@ -221,15 +207,17 @@ class Parent:
         procs: List[Process] = list()
         for i in range(self.nchild):
             props: ChildProps = {
-                "index": i,
-                "dummy": "dummy",
+                "dummy_int": i,
+                "dummy_str": str(i),
             }
             proc: Process = Process(
                 target=child_worker,
                 args=(
+                    i,
                     request_queue,
                     result_queue,
                     message_queue,
+                    self.logger.level,
                     props,
                 ),
             )
@@ -264,40 +252,3 @@ class Parent:
             for res in sorted(responses, key=lambda x: x.request_value)
             if res.response_value is not None
         ]
-
-
-def main() -> None:
-    # get arguments
-    parser: ArgumentParser = ArgumentParser(
-        description="A sample implementation of multiprocessing"
-    )
-    parser.add_argument(
-        "-n",
-        "--nchild",
-        type=int,
-        default=-1,
-        help=(
-            "the number of child processes (defualt: -1 == os.cpu_count() - 1)"
-        ),
-    )
-    args: Namespace = parser.parse_args()
-    # create the main logger
-    logger: Logger = getLogger()
-    logger.setLevel(LOG_LEVEL)
-    formatter: Formatter = Formatter(
-        fmt="%(asctime)s [%(levelname)s] %(message)s",
-        datefmt="%Y/%m/%d %H:%M:%S",
-    )
-    handler: StreamHandler = StreamHandler(stream=sys.stdout)
-    handler.setLevel(LOG_LEVEL)
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
-    # create the Parent instance
-    parent: Parent = Parent(**vars(args), logger=logger)
-    # do it!
-    parent.run()
-    return
-
-
-if __name__ == "__main__":
-    main()

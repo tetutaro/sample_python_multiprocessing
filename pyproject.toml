@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "sample-python-multiprocessing"
-version = "0.1.0"
-description = ""
+version = "0.1.0"  # Automatically updated by poetry-dynamic-versioning
+description = "A sample implementation of multiprocessing in Python"
 authors = ["Tetsutaro Maruyama <tetsutaro.maruyama@gmail.com>"]
 readme = "README.md"
 packages = [{include = "src"}]
@@ -13,16 +13,17 @@ tqdm = "^4.64.1"
 types-tqdm = "^4.64.7.11"
 
 [tool.poetry.group.dev.dependencies]
-pyproject-flake8 = "^6.0.0.post1"
 black = "^22.12.0"
-python-lsp-server = "^1.7.1"
+flake8 = "4.0.1"
+mypy = "^0.991"
 pytest = "^7.2.1"
 pytest-cov = "^4.0.0"
+pytest-flake8 = "^1.1.1"
+pytest-mypy = "^0.10.3"
 sphinx = "^6.1.3"
 sphinx-rtd-theme = "1.2.0rc2"
-sphinx-pyproject-poetry = {git = "https://github.com/tetutaro/sphinx-pyproject-poetry.git"}
-pytest-mypy = "^0.10.3"
-mypy = "^0.991"
+sphinx-pyproject-poetry = {git = "https://github.com/tetutaro/sphinx_pyproject_poetry.git"}
+python-lsp-server = "^1.7.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
@@ -34,26 +35,31 @@ vcs = "git"
 format = "{base}"
 style = "pep440"
 
-[tool.flake8]
-max-line-length = 79
-ignore = "E203"
-max-complexity = 15
+[tool.poetry-dynamic-versioning.substitution]
+files = ["src/__init__.py"]
+
+# [tool.flake8]
+# -> .flake8
 
 [tool.black]
 line-length = 79
+include = "\\.pyi?$"
 
 [tool.mypy]
 ignore_missing_imports = true
-exclude = ["__pycache__", "^__init__\\.py$"]
 
 [tool.pytest.ini_options]
-addopts = "-v --cov --mypy"
+addopts = "-v --cov --flake8 --mypy"
+filterwarnings = """
+    ignore:SelectableGroups dict interface is deprecated. Use select.
+"""
 
 [tool.sphinx-pyproject]
 copyright = "2023, Tetsutaro Maruyama"
-extensions = ["sphinx.ext.autodoc", "sphinx.ext.napoleon", "sphinx_rtd_theme"]
+extensions = ["sphinx.ext.autodoc", "sphinx.ext.napoleon", "sphinx.ext.linkcode", "sphinx.ext.githubpages", "sphinx_rtd_theme"]
 templates_path = ["_templates"]
 exclude_patterns = []
 language = "ja"
 html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
+github_username = "tetutaro"
