@@ -1,0 +1,4 @@
+[submodule "docs/build"]
+	path = docs/build
+	url = git@github.com:tetutaro/sample_python_multiprocessing.git
+	branch = gh-pages
